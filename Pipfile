@@ -13,6 +13,7 @@ torch = {version="*", index="pytorch"}
 torchvision = {version="*", index="pytorch"}
 torchaudio = {version="*", index="pytorch"}
 numpy = {version="*"}
+wandb = {version="*"}
 
 [dev-packages]
 

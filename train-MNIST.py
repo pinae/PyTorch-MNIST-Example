@@ -3,9 +3,7 @@ from torch import nn
 from torch.utils.data import DataLoader
 from torchvision import datasets
 from torchvision.transforms import ToTensor
-from torch.optim.lr_scheduler import StepLR
 from MultiLayerPerceptron import FeedForwardNetwork
-from ConvolutionalNetwork import ConvolutionalNetwork, DeepConvolutionalNetwork
 
 training_data = datasets.MNIST(
     root="data",
@@ -44,8 +42,7 @@ model = FeedForwardNetwork().to(device)
 print(model)
 
 loss_fn = nn.CrossEntropyLoss()
-#optimizer = torch.optim.SGD(model.parameters(), lr=1e-3)
-optimizer = torch.optim.SGD(model.parameters(), lr=5e-3)
+optimizer = torch.optim.SGD(model.parameters(), lr=1e-3)
 
 
 def train(dataloader, model, loss_fn, optimizer):
@@ -84,11 +81,9 @@ def test(dataloader, model, loss_fn):
     print(f"Test Error: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
 
 
-epochs = 100
-scheduler = StepLR(optimizer, step_size=2, gamma=0.9)
+epochs = 15
 for t in range(epochs):
     print(f"Epoch {t+1} (lr: {optimizer.state_dict()['param_groups'][0]['lr']})\n-------------------------------")
     train(train_dataloader, model, loss_fn, optimizer)
     test(test_dataloader, model, loss_fn)
-    scheduler.step()
 print("Done!")
