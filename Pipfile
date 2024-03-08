@@ -9,9 +9,9 @@ verify_ssl = false
 name = "pytorch"
 
 [packages]
-torch = {version="*", index="pytorch"}
-torchvision = {version="*", index="pytorch"}
-torchaudio = {version="*", index="pytorch"}
+torch = {version="*"}
+torchvision = {version="*"}
+torchaudio = {version="*"}
 numpy = {version="*"}
 wandb = {version="*"}
 
