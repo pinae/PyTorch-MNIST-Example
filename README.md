@@ -8,8 +8,10 @@ Lernens. Fürs Training neuronaler Netze hat sich der Datensatz als Beispiel fü
 überschaubar, sodass das Training auch ohne Hardwarebeschleunigung in Minuten statt Stunden fertig wird und der 
 Speicherbedarf überfordert günstige Grafikkarten nicht.
 
-Voraussetzung für alle Beispiele in diesem Repository ist eine funktionierende Installation von PyTorch. Für die 
-Nutzung mit `pipenv` steht ein [`Pipfile`](https://github.com/pinae/PyTorch-MNIST-Example/blob/main/Pipfile) bereit:
+Voraussetzung für alle Beispiele in diesem Repository ist eine funktionierende 
+[Installation von PyTorch](https://youtu.be/V1BFW4rs-4w). 
+Für die Nutzung mit `pipenv` steht ein 
+[`Pipfile`](https://github.com/pinae/PyTorch-MNIST-Example/blob/main/Pipfile) bereit:
 
 ```bash
 echo "Repository laden..."
