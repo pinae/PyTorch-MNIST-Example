@@ -23,11 +23,11 @@ if __name__ == '__main__':
     for img_no, (img, label) in enumerate(train_data):
         img.save(path.join("..", "data", "MNIST_image_files", "train", f"{img_no:05d}.png"), "PNG")
         train_labels[img_no] = label
-        with open(path.join("..", "data", "MNIST_image_files", "train", "labels.json"), "w") as f:
-            json.dump(train_labels, f)
+    with open(path.join("..", "data", "MNIST_image_files", "train", "labels.json"), "w") as f:
+        json.dump(train_labels, f)
     test_labels = {}
     for img_no, (img, label) in enumerate(test_data):
         img.save(path.join("..", "data", "MNIST_image_files", "test", f"{img_no:05d}.png"), "PNG")
         test_labels[img_no] = label
-        with open(path.join("..", "data", "MNIST_image_files", "test", "labels.json"), "w") as f:
-            json.dump(test_labels, f)
+    with open(path.join("..", "data", "MNIST_image_files", "test", "labels.json"), "w") as f:
+        json.dump(test_labels, f)
