@@ -68,7 +68,7 @@ verändern, dass das Training nicht mehr klappt. Damit Sie dabei die nicht die �
 [Weights&Biases](https://wandb.ai) einen kostenlosen Account erzeugen. Ausgestattet mit dem Token dieses Accounts 
 können Sie `train.py` statt `train-MNIST.py` aufrufen. Im Prinzip macht der Code das Gleiche. Die Hyperparameter und
 Metriken des Trainings werden aber automatisch mit Weights&Biases synchronisiert, sodass Sie in diesem Webdienst 
-leicht vergleichen können, was die änderungen bewirkt haben.
+leicht vergleichen können, was die Änderungen bewirkt haben.
 
 Zusätzlich haben wir in `MultiLayerPerceptron.py` und in `ConvolutionalNetwork.py` je zwei Netzwerke vorbereitet, die
 Sie schnell ausprobieren können. Die größeren Netze aus diesen Dateien erreichen nach einer etwas längeren 

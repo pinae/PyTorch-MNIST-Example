@@ -17,10 +17,8 @@ class MNIST(Dataset):
         if not path.exists(path.join(self.folder, "labels.json")):
             raise FileExistsError(f"The file {path.join(self.folder, 'labels.json')} needs to exist.")
         with open(path.join(self.folder, "labels.json"), 'r') as f:
-            self.labels = {}
             json_data = load(f)
-            for key in json_data.keys():
-                self.labels[int(key)] = json_data[key]
+            self.labels = dict((int(key), value) for key, value in json_data.items())
 
     def __getitem__(self, index: int) -> Tuple[Any, Any]:
         """
