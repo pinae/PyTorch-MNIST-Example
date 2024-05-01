@@ -8,6 +8,7 @@ from ConvolutionalNetwork import ConvolutionalNetwork, DeepConvolutionalNetwork
 from torch.nn import CrossEntropyLoss
 from torch.optim.lr_scheduler import StepLR
 
+
 def main():
     wandb.init(
         project="MNIST-Examples",
@@ -55,7 +56,6 @@ def main():
     optimizer = torch.optim.SGD(model.parameters(), lr=wandb.config["learning_rate"])
     wandb.config["optimizer"] = str(optimizer).split('(')[0].strip()
 
-
     def train(dataloader, model, loss_fn, optimizer):
         size = len(dataloader.dataset)
         model.train()
@@ -79,7 +79,6 @@ def main():
                 loss, current = loss.item(), (batch + 1) * len(X)
                 print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
 
-
     def test(dataloader, model, loss_fn):
         size = len(dataloader.dataset)
         num_batches = len(dataloader)
@@ -99,7 +98,6 @@ def main():
         })
         print(f"Test Error: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
 
-
     scheduler = StepLR(optimizer, step_size=2, gamma=0.75)
     for t in range(wandb.config["epochs"]):
         print(f"Epoch {t+1} (lr: {optimizer.state_dict()['param_groups'][0]['lr']})\n-------------------------------")
@@ -110,5 +108,4 @@ def main():
 
 
 if __name__ == "__main__":
-    for i in range(10):
-        main()
+    main()

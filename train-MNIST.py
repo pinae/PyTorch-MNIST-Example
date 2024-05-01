@@ -23,9 +23,9 @@ batch_size = 64
 train_dataloader = DataLoader(training_data, batch_size=batch_size)
 test_dataloader = DataLoader(test_data, batch_size=batch_size)
 
-for X, y in test_dataloader:
-    print(f"Shape of X [N, C, H, W]: {X.shape}")
-    print(f"Shape of y: {y.shape} {y.dtype}")
+for input_data, labels in test_dataloader:
+    print(f"Shape of input_data [N, C, H, W]: {input_data.shape}")
+    print(f"Shape of labels: {labels.shape} (type: {labels.dtype})")
     break
 
 device = (
@@ -36,6 +36,7 @@ device = (
     else "cpu"
 )
 print(f"Using {device} device")
+
 
 class FeedForwardNetwork(nn.Module):
     def __init__(self):
@@ -54,11 +55,12 @@ class FeedForwardNetwork(nn.Module):
         logits = self.linear_relu_stack(x)
         return logits
 
-model = FeedForwardNetwork().to(device)
-print(model)
 
-loss_fn = nn.CrossEntropyLoss()
-optimizer = torch.optim.SGD(model.parameters(), lr=1e-3)
+feed_forward_model = FeedForwardNetwork().to(device)
+print(feed_forward_model)
+
+cross_entropy_loss_fn = nn.CrossEntropyLoss()
+sgd_optimizer = torch.optim.SGD(feed_forward_model.parameters(), lr=1e-3)
 
 
 def train(dataloader, model, loss_fn, optimizer):
@@ -100,7 +102,12 @@ def test(dataloader, model, loss_fn):
 
 epochs = 15
 for t in range(epochs):
-    print(f"Epoch {t+1} (lr: {optimizer.state_dict()['param_groups'][0]['lr']})\n-------------------------------")
-    train(train_dataloader, model, loss_fn, optimizer)
-    test(test_dataloader, model, loss_fn)
+    print(f"Epoch {t+1} (lr: {sgd_optimizer.state_dict()['param_groups'][0]['lr']})\n-------------------------------")
+    train(train_dataloader,
+          feed_forward_model,
+          cross_entropy_loss_fn,
+          sgd_optimizer)
+    test(test_dataloader,
+         feed_forward_model,
+         cross_entropy_loss_fn)
 print("Done!")
