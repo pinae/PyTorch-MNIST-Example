@@ -1,5 +1,6 @@
 import wandb
 import torch
+import numpy as np
 from torch.utils.data import DataLoader
 from load_data import *
 from MultiLayerPerceptron import FeedForwardNetwork, DeepFeedForwardNetwork
